@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Levletsplay</title>
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+    <style>
+        body {
+            background-color: #f0f0f0;
+            font-family: 'Segoe UI', sans-serif;
+            color: #5ee6e2;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI';
+            font-weight: bold;
+        }
+
+        .nav {
+            width: 100%;
+            background-color: #3bbdb3;
+            display: flex;
+            justify-content: center;
+            padding: 10px 0;
+        }
+
+            .nav a {
+                color: #ffffff;
+                text-decoration: none;
+                font-size: 18px;
+                margin: 0 15px;
+                transition: color 0.3s ease, background-color 0.3s ease;
+                padding: 8px 16px;
+                border-radius: 4px;
+            }
+
+                .nav a:hover {
+                    color: #3bbdb3;
+                    background-color: #ffffff;
+                }
+
+                .nav a:active {
+                    background-color: #1f7f7a;
+                }
+
+        .container {
+            text-align: center;
+            margin-top: 100px;
+        }
+
+            .container h1 {
+                font-size: 36px;
+                margin-bottom: 20px;
+            }
+
+            .container p {
+                font-size: 20px;
+                font-weight: bold;
+                margin-bottom: 30px;
+            }
+
+        .social-buttons {
+            position: absolute;
+            bottom: 20px;
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
+
+            .social-buttons a {
+                display: inline-block;
+                margin: 0 10px;
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                overflow: hidden;
+                background-color: #5ee6e2;
+                transition: transform 0.3s ease, background-color 0.3s ease;
+            }
+
+            .social-buttons img {
+                width: 100%;
+                height: 100%;
+                display: block;
+            }
+
+            .social-buttons a:hover {
+                transform: scale(1.1);
+                background-color: #3bbdb3;
+            }
+
+            .social-buttons a:active {
+                transform: scale(0.9);
+                background-color: #1f7f7a;
+            }
+
+        .section {
+            display: none;
+        }
+
+            .section.active {
+                display: block;
+            }
+
+        .project-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+            .project-buttons a {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 15px 30px;
+                font-size: 18px;
+                color: #ffffff;
+                background-color: #3bbdb3;
+                text-decoration: none;
+                border-radius: 8px;
+                transition: background-color 0.3s ease, transform 0.3s ease;
+                width: 150px;
+            }
+
+                .project-buttons a img {
+                    width: 50px;
+                    height: 50px;
+                    margin-right: 10px;
+                }
+
+                .project-buttons a:hover {
+                    background-color: #5ee6e2;
+                    transform: scale(1.05);
+                }
+
+                .project-buttons a:active {
+                    background-color: #1f7f7a;
+                    transform: scale(0.95);
+                }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0,0,0);
+            background-color: rgba(0,0,0,0.4);
+            padding-top: 60px;
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 600px;
+            text-align: left;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+            .close:hover,
+            .close:focus {
+                color: black;
+                text-decoration: none;
+                cursor: pointer;
+            }
+
+        .modal h2 {
+            font-size: 24px;
+        }
+
+        .modal p {
+            font-size: 18px;
+            margin: 20px 0;
+        }
+
+        .download-button {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 18px;
+            color: #ffffff;
+            background-color: #3bbdb3;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
+        }
+
+            .download-button:hover {
+                background-color: #5ee6e2;
+            }
+
+            .download-button:active {
+                background-color: #1f7f7a;
+            }
+    </style>
+    <script>
+        function showSection(sectionId) {
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.remove('active');
+            });
+            document.getElementById(sectionId).classList.add('active');
+        }
+
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = "block";
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = "none";
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            showSection('about');
+        });
+
+        window.onclick = function (event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = "none";
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="nav">
+        <a href="javascript:void(0)" onclick="showSection('about')">Обо мне</a>
+        <a href="javascript:void(0)" onclick="showSection('projects')">Мои проекты</a>
+        <a href="javascript:void(0)" onclick="showSection('source')">Исходный код</a>
+    </div>
+    <div class="container">
+        <div id="about" class="section active">
+            <h1>Обо мне</h1>
+            <p>Привет! Меня зовут Лев. <br> Я люблю что-то писать вроде этого сайта или моих проектов. Загляни в мои соц. сети внизу.</p>
+        </div>
+        <div id="projects" class="section">
+            <h1>Мои проекты</h1>
+            <p>Здесь вы найдете информацию о моих проектах.</p>
+            <div class="project-buttons">
+                <a href="javascript:void(0)" onclick="openModal('modal1')">
+                    <img src="images/FA.png" alt="Fortnite assistant">
+                    Fortnite assistant
+                </a>
+                <a href="javascript:void(0)" onclick="openModal('modal2')">
+                    <img src="http://placehold.it/50x50" alt="Проект 2">
+                    Проект 2
+                </a>
+                <a href="javascript:void(0)" onclick="openModal('modal3')">
+                    <img src="http://placehold.it/50x50" alt="Проект 3">
+                    Проект 3
+                </a>
+            </div>
+        </div>
+        <div id="source" class="section">
+            <h1>Исходный код</h1>
+            <p>Здесь вы можете найти исходный код моих проектов.</p>
+            <p>Пока здесь ничего нет. Загляни на мой <a href="https://github.com/levbro14?tab=repositories" target="_blank">гидхаб</a> </p>
+        </div>
+    </div>
+    <div class="social-buttons">
+        <a href="https://t.me/+y_yDPVcxgeAwZjY6" target="_blank">
+            <img src="images/telegram.png" alt="Telegram">
+        </a>
+        <a href="https://www.youtube.com/@levletsplay9558" target="_blank">
+            <img src="images/youtube.png" alt="YouTube">
+        </a>
+        <a href="https://discord.gg/DYsBqdtPva" target="_blank">
+            <img src="images/discord.png" alt="Discord">
+        </a>
+    </div>
+
+    <!-- Modals -->
+    <div id="modal1" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('modal1')">&times;</span>
+            <h2>Fortnite assistant</h2>
+            <p>Описание проекта: <br> Fortnite Assistent - это неофицальный помощник фортнайт в котором можно посмотреть не заходя в игру: магазин предметов, новости, косметические предметы и свою статистику!</p>
+            <a href="https://github.com/levbro14/FortniteAssistent/releases/download/FortniteAssistent(V1.6)/Setup.1.6.exe" class="download-button" download>Скачать</a>
+        </div>
+    </div>
+
+    <div id="modal2" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('modal2')">&times;</span>
+            <h2>Разрабатывается</h2>
+            <p>Описание проекта 2.</p>
+            <a href="http://placehold.it/50x50" class="download-button" download>Скачать</a>
+        </div>
+    </div>
+
+    <div id="modal3" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('modal3')">&times;</span>
+            <h2>Разрабатывается</h2>
+            <p>Описание проекта 3.</p>
+            <a href="http://placehold.it/50x50" class="download-button" download>Скачать</a>
+        </div>
+    </div>
+</body>
+</html>
+
+
+
